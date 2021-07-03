@@ -9,16 +9,17 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Generate coverage
+        run: |
+          pip install mypy lxml
+          mypy . --html-report "mypy_report"
+
+      - name: set env variable
+        run: echo "HTML_REPORT=mypy_report/index.html" >> $GITHUB_ENV
+
       - uses: actions/checkout@master
       - name: Self test
         id: selftest
 
         # Put your action repo here
         uses: kracekumar/type_coverage_as_comment@master
-        with:
-          html_report: "mypy_report/index.html"
-      - name: Check outputs
-        run: |
-          pip install mypy lxml
-          mypy . --html-report "mypy_report"
-          test "${{ steps.selftest}}"

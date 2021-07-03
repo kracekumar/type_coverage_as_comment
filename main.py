@@ -97,7 +97,6 @@ def validate_filepath(html_report: str) -> Path:
     if html_report:
         if is_valid_path(html_report):
             return Path(html_report)
-        raise ValueError(f'Unable to find {html_report} to parse.')
 
     html_report_env = os.environ.get('INPUT_HTML_REPORT')
     if html_report_env:
