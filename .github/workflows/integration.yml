@@ -31,7 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # - run: mkdir -p /home/runner/work/type_coverage_as_comment/type_coverage_as_comment/
       - name: Download the type coverage file
         id: download
         uses: actions/download-artifact@v2
