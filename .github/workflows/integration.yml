@@ -22,8 +22,8 @@ jobs:
       - name: Generate coverage
         run: |
           pip install mypy lxml
-          ls -lath
           mypy . --html-report "mypy_report"
+          ls -lath
 
       - uses: actions/checkout@master
       - name: Self test
