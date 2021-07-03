@@ -39,8 +39,7 @@ jobs:
           path: mypy_report
 
       - name: set env variable
-        run: echo "HTML_REPORT=${{steps.download.outputs.download-path}}/index.html" >> $GITHUB_ENV
-
+        run: echo "HTML_REPORT=${{steps.download.outputs.download-path}}" >> $GITHUB_ENV
 
       - uses: actions/checkout@master
       - name: Self test
