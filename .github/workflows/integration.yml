@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - run: mkdir -p /github/workspace
       - name: Download the type coverage file
         id: download
         uses: actions/download-artifact@v2
