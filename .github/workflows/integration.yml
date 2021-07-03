@@ -24,6 +24,7 @@ jobs:
           pip install mypy lxml
           mypy . --html-report "mypy_report"
         with:
+          name: report
           path: mypy_report/index.html
 
       - uses: actions/checkout@master
