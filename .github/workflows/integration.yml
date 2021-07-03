@@ -9,9 +9,6 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: set env variable
-        run: echo "HTML_REPORT=/home/runner/work/mypy_report/index.html" >> $GITHUB_ENV
-
       - uses: actions/checkout@master
       - name: checkout
         id: checkout
@@ -22,8 +19,25 @@ jobs:
       - name: Generate coverage
         run: |
           pip install mypy lxml
-          mypy . --html-report "/home/runner/work/mypy_report"
-          ls -lath
+          mypy . --html-report "mypy_report"
+
+      - name: upload type coverage file
+        uses: actions/upload-artifact@v2
+        with:
+          name: mypy_report
+          path: mypy)report
+
+  Run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the type coverage file
+        uses: actions/download-artifact@v2
+        with:
+          name: mypy_report
+
+      - name: set env variable
+        run: echo "HTML_REPORT=mypy_report/index.html" >> $GITHUB_ENV
+
 
       - uses: actions/checkout@master
       - name: Self test
