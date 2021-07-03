@@ -32,12 +32,14 @@ jobs:
     needs: build
     steps:
       - name: Download the type coverage file
+        id: download
         uses: actions/download-artifact@v2
         with:
           name: mypy_report
+          path: mypy_report
 
       - name: set env variable
-        run: echo "HTML_REPORT=mypy_report/index.html" >> $GITHUB_ENV
+        run: echo "HTML_REPORT=${{steps.download.outputs.download-path}}/index.html" >> $GITHUB_ENV
 
 
       - uses: actions/checkout@master
@@ -46,3 +48,4 @@ jobs:
 
         # Put your action repo here
         uses: kracekumar/type_coverage_as_comment@master
+        working_directory: mypy_report
