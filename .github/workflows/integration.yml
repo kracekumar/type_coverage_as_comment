@@ -45,3 +45,5 @@ jobs:
         uses: kracekumar/type_coverage_as_comment@master
         env:
           HTML_REPORT: ${{steps.download.outputs.download-path}}
+        run: |
+          env
