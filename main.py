@@ -98,7 +98,8 @@ def validate_filepath(html_report: str) -> Path:
         if is_valid_path(html_report):
             return Path(html_report)
 
-    html_report_env = os.environ.get('HTML_REPORT')
+    print(os.environ)
+    html_report_env = os.environ.get('HTML_REPORT') or os.environ.get('html_report')
     if html_report_env:
         if is_valid_path(html_report_env):
             return Path(html_report_env)
