@@ -99,12 +99,13 @@ def validate_filepath(html_report: str) -> Path:
             return Path(html_report)
 
     print(os.environ)
-    print(list(Path('.').iterdir()))
+    print(list(Path('/home/runner/work/').iterdir()))
+    print(list(Path('/home/runner/work/mypy_report/').iterdir()))
     html_report_env = os.environ.get('HTML_REPORT') or os.environ.get('html_report')
     if html_report_env:
         if is_valid_path(html_report_env):
             return Path(html_report_env)
-        raise ValueError(f'Unable to find {html_report} to parse.')
+        raise ValueError(f'Unable to find {html_report_env} to parse.')
 
     raise ValueError('html_report path should be passed an argument or set as environment variable')
 
