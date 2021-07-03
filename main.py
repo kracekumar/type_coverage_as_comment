@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
-import click
+import click  # type: ignore
 from dataclasses import dataclass, asdict
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # type: ignore
 from typing import Optional
 import re
 
@@ -38,7 +38,7 @@ def get_type_coverage(cov_filename: Path) -> Result:
     with open(cov_filename) as fp:
         soup = BeautifulSoup(fp, 'html.parser')
 
-    run_summary: RunSummary = None
+    run_summary: RunSummary = None  # type: ignore
     file_summaries: list[FileSummary] = []
 
     for tr in soup.table.find_all('tr'):
