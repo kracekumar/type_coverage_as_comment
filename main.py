@@ -100,7 +100,7 @@ def validate_filepath(html_report: str) -> Path:
 
     print(os.environ)
     html_report_env = os.environ.get('HTML_REPORT') or os.environ.get('html_report')
-    print(list(Path(html_report_env).iterdir()))
+    print(list(Path(html_report_env).iterdir()))  # type: ignore
     if html_report_env:
         if is_valid_path(html_report_env):
             return Path(html_report_env)
