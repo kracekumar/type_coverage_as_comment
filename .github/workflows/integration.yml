@@ -48,4 +48,3 @@ jobs:
 
         # Put your action repo here
         uses: kracekumar/type_coverage_as_comment@master
-        working_directory: mypy_report
