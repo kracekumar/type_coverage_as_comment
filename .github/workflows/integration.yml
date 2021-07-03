@@ -21,4 +21,4 @@ jobs:
         run: |
           pip install mypy lxml
           mypy . --html-report "mypy_report"
-          test "${{ steps.selftest.outputs.myOutput }}"
+          test "${{ steps.selftest}}"
