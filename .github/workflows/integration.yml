@@ -22,10 +22,10 @@ jobs:
       - name: Generate coverage
         run: |
           pip install mypy lxml
-          mypy . --html-report "mypy_report"
+          mypy . --html-report "/github/home/mypy_report"
         with:
           name: report
-          path: mypy_report/index.html
+          path: /github/home/mypy_report/index.html
 
       - uses: actions/checkout@master
       - name: Self test
