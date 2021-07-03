@@ -122,8 +122,8 @@ def main(html_report: str):
         filepath = validate_filepath(html_report)
         type_result = get_type_coverage(filepath)
         print(find_modified_files())
-    except:
-        pass
+    except Exception as exc:
+        print(exc)
 
 
 if __name__ == "__main__":
