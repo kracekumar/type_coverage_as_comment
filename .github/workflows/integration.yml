@@ -47,7 +47,8 @@ jobs:
       - name: Run git diff
         id: diff
         run: |
-          echo "::set-output name=modified_files::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .py | xargs)"
+          echo "$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+          echo "::set-output name=modified_files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
 
       - name: Self test
         id: selftest
