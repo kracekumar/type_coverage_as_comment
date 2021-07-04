@@ -48,16 +48,14 @@ jobs:
         id: diff
         run: |
           echo "::set-output name=modified_files::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .py | xargs)"
+
       - name: Self test
         id: selftest
-        uses: actions/checkout@master
-
-        # Put your action repo here
         uses: kracekumar/type_coverage_as_comment@master
         env:
           HTML_REPORT: ${{steps.download.outputs.download-path}}
+
       - name: Check outputs and modified files
-        needs: [checkout_repo, diff, selftest]
         run: |
           echo "RUN_ID: ${{ steps.selftest.outputs.GITHUB_RUN_ID }}"
-          echo ${{needs.diff.outputs.modified_files}}
+          echo ${{steps.diff.outputs.modified_files}}
