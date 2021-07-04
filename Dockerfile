@@ -12,4 +12,4 @@ FROM builder
 COPY --from=builder /app /app
 WORKDIR /app
 ENV PYTHONPATH /app
-ENTRYPOINT ["python", "/app/main.py"]
+ENTRYPOINT ["/app/entrypoint.sh"]

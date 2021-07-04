@@ -36,7 +36,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: mypy_report
-          path: /github/workspace
 
       - uses: actions/checkout@master
       - name: Self test
