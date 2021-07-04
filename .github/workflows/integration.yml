@@ -31,7 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     outputs:
-      modified_files: ${{ steps.diff.outputs.modified_files }}
+      modified_files:
+        description: "Contains list of all modified files"
+        value: ${{ steps.diff.outputs.modified_files }}
 
     steps:
       - name: Download the type coverage file
@@ -48,7 +50,7 @@ jobs:
         id: diff
         run: |
           echo "$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
-          echo "::set-output name=modified_files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
+          echo "::set-output name=modified_files::$(echo git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
 
       - name: Self test
         id: selftest
@@ -59,4 +61,4 @@ jobs:
       - name: Check outputs and modified files
         run: |
           echo "RUN_ID: ${{ steps.selftest.outputs.GITHUB_RUN_ID }}"
-          echo ${{steps.diff.outputs.modified_files}}
+          echo "${{steps.diff.outputs.modified_files}}"
