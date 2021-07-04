@@ -45,3 +45,6 @@ jobs:
         uses: kracekumar/type_coverage_as_comment@master
         env:
           HTML_REPORT: ${{steps.download.outputs.download-path}}
+      - name: Check outputs and modified files
+        run: |
+          echo "RUN_ID: ${{ steps.selftest.outputs.GITHUB_RUN_ID }}"

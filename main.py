@@ -98,9 +98,9 @@ def validate_filepath(html_report: str) -> Path:
         if is_valid_path(html_report):
             return Path(html_report)
 
-    print(os.environ)
+    # print(os.environ)
     html_report_env = os.getenv('HTML_REPORT')
-    print(list(Path(html_report_env).iterdir()))  # type: ignore
+    # print(list(Path(html_report_env).iterdir()))  # type: ignore
     if html_report_env:
         if is_valid_path(html_report_env):
             return Path(html_report_env)
@@ -112,8 +112,9 @@ def validate_filepath(html_report: str) -> Path:
 def find_modified_files():
     for key in ["GITHUB_WORKFLOW", "GITHUB_RUN_ID",
                 "GITHUB_RUN_NUMBER", "GITHUB_REPOSITORY",
-                "GITHUB_REF", "GITHUB_BASE_REF", ""]:
-        print(key, os.environ.get(key))
+                "GITHUB_REF", "GITHUB_BASE_REF", ]:
+        val = os.environ.get(key)
+        print(f"::set-output name={key}::{val}")
 
 
 @click.command()
