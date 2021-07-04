@@ -99,7 +99,7 @@ def validate_filepath(html_report: str) -> Path:
             return Path(html_report)
 
     print(os.environ)
-    html_report_env = '/home/runner/work/type_coverage_as_comment/type_coverage_as_comment'#os.getenv('HTML_REPORT')
+    html_report_env = os.getenv('HTML_REPORT')
     print(list(Path(html_report_env).iterdir()))  # type: ignore
     if html_report_env:
         if is_valid_path(html_report_env):
